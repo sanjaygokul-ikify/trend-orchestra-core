@@ -59,6 +59,10 @@ class Engine:
         else:
             logger.error(f"Invalid message: {message}")
 
+    def remove_task(self, task_id: str) -> None:
+        self.tasks = [task for task in self.tasks if task.id != task_id]
+        logger.info(f"Task {task_id} removed")
+
 class MemoryGraph:
     def __init__(self) -> None:
         self.states = {}
