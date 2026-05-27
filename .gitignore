@@ -1,0 +1,1 @@
+/__pycache__\n/*.pyc\n.env\n.venv\ninstance/\nlogs/\n*.log\n.env.local\n.env.dev\n.env.prod\n*.sqlite\n.ignored/\ncoverage/\npytest_cache/\n*.swp\n.env\n**/*.orig\n**/*.rej\n.mypy_cache\nnox*\nbuild/\ndist/\n**/__pycache__/\n**/*.py[cod]\n**/*.so
