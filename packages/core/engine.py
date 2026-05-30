@@ -63,6 +63,18 @@ class Engine:
         self.tasks = [task for task in self.tasks if task.id != task_id]
         logger.info(f"Task {task_id} removed")
 
+    def __contains__(self, task_id: str) -> bool:
+        return any(task.id == task_id for task in self.tasks)
+
+    def __len__(self) -> int:
+        return len(self.tasks)
+
+    def __getitem__(self, task_id: str) -> Task:
+        task = next((t for t in self.tasks if t.id == task_id), None)
+        if task is None:
+            raise TaskError(f"Task {task_id} not found")
+        return task
+
 class MemoryGraph:
     def __init__(self) -> None:
         self.states = {}
