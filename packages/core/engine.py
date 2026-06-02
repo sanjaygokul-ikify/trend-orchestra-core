@@ -75,6 +75,19 @@ class Engine:
             raise TaskError(f"Task {task_id} not found")
         return task
 
+    def shutdown(self) -> None:
+        logger.info("Shutting down engine")
+        self.tasks = []
+        self.message_queue = []
+
+    def start(self) -> None:
+        logger.info("Starting engine")
+
+    def restart(self) -> None:
+        logger.info("Restarting engine")
+        self.shutdown()
+        self.start()
+
 class MemoryGraph:
     def __init__(self) -> None:
         self.states = {}
