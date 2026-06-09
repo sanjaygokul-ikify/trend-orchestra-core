@@ -88,6 +88,21 @@ class Engine:
         self.shutdown()
         self.start()
 
+    def execute_with_error_handling(self, task: Task) -> None:
+        try:
+            self.execute(task)
+        except TaskError as e:
+            logger.error(f"Error executing task: {e}")
+            # Add error handling logic here
+
+    @property
+    def agents_count(self) -> int:
+        return len(self.agents)
+
+    @property
+    def tasks_count(self) -> int:
+        return len(self.tasks)
+
 class MemoryGraph:
     def __init__(self) -> None:
         self.states = {}
