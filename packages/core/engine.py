@@ -93,7 +93,10 @@ class Engine:
             self.execute(task)
         except TaskError as e:
             logger.error(f"Error executing task: {e}")
-            # Add error handling logic here
+            # Add new line to remove task after error: task removal is now handled by the execute method itself
+            task = next((t for t in self.tasks if t.id == task.id), None)
+            if task:
+                self.tasks.remove(task)
 
     @property
     def agents_count(self) -> int:
