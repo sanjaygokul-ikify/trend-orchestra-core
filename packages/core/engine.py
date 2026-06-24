@@ -104,6 +104,14 @@ class Engine:
     def tasks_count(self) -> int:
         return len(self.tasks)
 
+    def execute_task_safely(self, task: Task) -> None:
+        try:
+            self.execute(task)
+        except Exception as e:
+            logger.error(f"Error executing task {task.id}: {e}")
+            self.remove_task(task.id)
+            raise TaskError(f"Error executing task {task.id}: {e}")
+
 class MemoryGraph:
     def __init__(self) -> None:
         self.states = {}
