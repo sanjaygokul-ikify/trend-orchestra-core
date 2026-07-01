@@ -120,4 +120,4 @@ class MemoryGraph:
         self.states[task_id] = state
 
     def get_state(self, task_id: str) -> Dict:
-        return self.states.get(task_id)
+        return self.states.get(task_id, {})
