@@ -121,3 +121,8 @@ class MemoryGraph:
 
     def get_state(self, task_id: str) -> Dict:
         return self.states.get(task_id, {})
+
+# Added type annotations for register_agent method
+    def register_agent(self, agent: Agent) -> None:
+        self.agents.append(agent)
+        logger.info(f"Agent {agent.id} registered")
