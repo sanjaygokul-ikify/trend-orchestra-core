@@ -14,20 +14,19 @@ class Agent:
 class Task:
     id: str
     agent_id: str
-    state: Dict
+    state: Dict[str, str]
 
-@dataclass
+@dataclasses.dataclass
+@total_ordering
+@frozen
 class MemoryGraph:
-    states: Dict[str, Dict]
+    states: Dict[str, Dict[str, str]]
 
-# Added init to MemoryGraph to prevent KeyError
-@dataclass
-class MemoryGraph:
     def __init__(self):
         self.states = {}
 
-    def update(self, task_id: str, state: Dict) -> None:
+    def update(self, task_id: str, state: Dict[str, str]) -> None:
         self.states[task_id] = state
 
-    def get_state(self, task_id: str) -> Dict:
+    def get_state(self, task_id: str) -> Dict[str, str]:
         return self.states.get(task_id, {})
